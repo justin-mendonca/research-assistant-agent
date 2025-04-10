@@ -4,7 +4,7 @@ from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
-from langchain.agents import create_tool_calling_agent
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 load_dotenv()
 
@@ -37,3 +37,17 @@ prompt = ChatPromptTemplate.from_messages(
         ("placeholder", "{agent_scratchpad}"),
     ]
 ).partial(format_instructions=research_response_parser.get_format_instructions())
+
+research_assistant_agent = create_tool_calling_agent(
+    llm=llm,
+    tools=[],
+    prompt=prompt
+)
+
+# instantiate the agent executor, which is used to execute the agent that has been defined
+# Verbose is used to see the "thinking" of the agent as it streams
+agent_executor = AgentExecutor(
+    agent=research_assistant_agent,
+    verbose=True,
+    tools=[]
+)
