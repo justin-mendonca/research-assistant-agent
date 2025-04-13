@@ -51,3 +51,15 @@ agent_executor = AgentExecutor(
     verbose=True,
     tools=[]
 )
+
+query = input("Please enter the URL of the research paper you want to analyze: ")
+
+raw_response = agent_executor.invoke({ "query": query })
+
+# The output of the LLM is parsed using the output parser that has been defined
+try:
+    parsed_response = research_response_parser.parse(raw_response.get("output")[0]["text"])
+    print("Parsed response:", parsed_response)
+except Exception as e:
+    print("Error parsing response:", e)
+    print("Raw response:", raw_response)
