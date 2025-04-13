@@ -5,6 +5,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.agents import create_tool_calling_agent, AgentExecutor
+from tools import save_tool
 
 load_dotenv()
 
@@ -38,9 +39,12 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 ).partial(format_instructions=research_response_parser.get_format_instructions())
 
+# Extend tools with other tools that the agent can use to complete the task!
+tools = [save_tool]
+
 research_assistant_agent = create_tool_calling_agent(
     llm=llm,
-    tools=[],
+    tools=tools,
     prompt=prompt
 )
 
@@ -49,7 +53,7 @@ research_assistant_agent = create_tool_calling_agent(
 agent_executor = AgentExecutor(
     agent=research_assistant_agent,
     verbose=True,
-    tools=[]
+    tools=tools
 )
 
 query = input("Please enter the URL of the research paper you want to analyze: ")
