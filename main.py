@@ -11,7 +11,13 @@ from datetime import datetime
 
 load_dotenv(override=True)
 
-llm = ChatAnthropic(model="claude-3-5-sonnet-latest")
+llm_selection = input("Enter 0 for Anthropic (Claude) or 1 for OpenAI (ChatGPT): ")
+
+if llm_selection not in ["0", "1"]:
+    raise ValueError("Invalid selection. Please enter 0 or 1.")
+
+# Initialize the LLM based on user input
+llm = ChatAnthropic(model="claude-3-5-sonnet-latest") if llm_selection == "0" else ChatOpenAI(model="gpt-3.5-turbo-16k", temperature=0)
 
 # ResearchResponse class for processing chunks
 class ChunkResponse(BaseModel):
