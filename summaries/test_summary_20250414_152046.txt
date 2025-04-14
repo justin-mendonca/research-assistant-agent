@@ -1,0 +1,17 @@
+Summary of: test
+Generated on: 2025-04-14 15:20:46
+--------------------------------------------------------------------------------
+
+Title: volesti: A C++ Library for High-Dimensional Sampling and Volume Computation of Convex Bodies
+
+Summary:
+This paper introduces volesti, a state-of-the-art C++ library designed for high-dimensional sampling and volume computation of convex bodies. The library implements advanced randomized algorithms that can efficiently handle hundreds to thousands of dimensions. volesti's key features include support for multiple input types (three types of polyhedra, spectrahedra, and non-linear convex objects), Monte Carlo algorithms with statistical verification tests, and seamless integration with the Eigen library and MKL optimizations. The software provides both R and Python interfaces for broader accessibility.
+
+The library addresses computationally challenging problems in sampling and volume estimation, offering practical implementations of theoretical MCMC algorithms. It supports various geometric walk-based sampling techniques and can sample from multiple distributions including uniform, exponential, Gaussian, and log-concave distributions. volesti can handle diverse convex domains such as hypercubes, zonotopes, and polytopes, while also providing functionality for volume computations and integration in high dimensions.
+
+The impact of volesti has been demonstrated across multiple domains, including metabolic network analysis, financial crisis modeling, stock market anomaly detection, and electric power systems. Notable applications include sampling from Recon3D (a human metabolic network) and analyzing spectrahedra. The software has proven valuable to various research teams tackling both applied and theoretical mathematical challenges, establishing itself as a versatile tool in the scientific community.
+
+References:
+- Eigen library
+- MKL (Math Kernel Library)
+- Recon3D metabolic network
